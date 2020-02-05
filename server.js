@@ -5,11 +5,11 @@ let myApp = http.createServer(function (req, res) {
         "Content-Type": "text/html; charset=utf-8"
     })
     if (req.url == '/') {
-        res.end("歡迎來到首頁。")
+        res.end("<h1>歡迎來到首頁。</h1>")
     } else if (req.url == '/about') {
-        res.end("歡迎來到關於我們頁")
+        res.end("<h1>歡迎來到關於我們頁</h1>")
     } else {
-        res.end("抱歉，找不到您的網頁。")
+        res.end("<h1>抱歉，找不到您的網頁。</h1>")
     }
 });
 
