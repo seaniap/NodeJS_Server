@@ -1,16 +1,26 @@
 let http = require('http');
+let fs = require('fs');
+let url = require('url');
 
 let myApp = http.createServer(function (req, res) {
-    res.writeHead(200, {
-        "Content-Type": "text/html; charset=utf-8"
+    let q = url.parse(req.url, true);
+    console.log(q.pathname);
+    let filename = "." + q.pathname;
+    fs.readFile(filename, function (err, data) {
+        if (err) {
+            res.writeHead(404, {
+                "Content-Type": "text/html; charset=utf-8"
+            });
+            return res.end("404 Not Found");
+        }
+        res.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        res.write(data);
+        return res.end();
     })
-    if (req.url == '/') {
-        res.end("<h1>歡迎來到首頁。</h1>")
-    } else if (req.url == '/about') {
-        res.end("<h1>歡迎來到關於我們頁</h1>")
-    } else {
-        res.end("<h1>抱歉，找不到您的網頁。</h1>")
-    }
 });
 
 myApp.listen(3000);
+
+console.log("Server listening 3000....")
