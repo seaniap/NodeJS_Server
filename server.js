@@ -10,8 +10,9 @@ let myApp = http.createServer(function (req, res) {
     let filename = "." + q.pathname;
     // 首頁預設
     if (filename == './') {
-        filename = './index.html'
+        filename = './index'
     }
+    filename = filename + ".html";
     fs.readFile(filename, function (err, data) {
         //判斷錯誤
         if (err) {
