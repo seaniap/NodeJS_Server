@@ -1,6 +1,7 @@
 let http = require('http');
 let fs = require('fs');
 let url = require('url');
+const PORT = process.env.PORT || 5000
 
 let myApp = http.createServer(function (req, res) {
     //取得輸入的網址
@@ -30,6 +31,6 @@ let myApp = http.createServer(function (req, res) {
     })
 });
 
-myApp.listen(3000);
+myApp.listen(PORT);
 
 console.log("Server listening 3000....")
